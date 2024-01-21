@@ -1,0 +1,25 @@
+import json
+test_dictionary = {
+    'Name' : 'Uncle Bob',
+    'Age' : '57',
+    'Home' : 'Rockport',
+    'Hobby1' : 'Rockclimbing'
+}
+
+print(test_dictionary)
+print(test_dictionary['Home'])
+
+for key in test_dictionary.keys():
+    print(test_dictionary[key])
+
+test_text = json.dumps(test_dictionary)
+print(test_text)
+
+#with open('JSONExample.json', 'w') as file_handle:
+#    file_handle.write(test_text)
+
+with open('JSONExample.json','r') as file_handle:
+    data_text = file_handle.read()
+    data_dictionary = json.loads(data_text)
+    print(data_dictionary)
+    print(data_dictionary['Name'])
