@@ -1,5 +1,5 @@
 class Scripture{
-    private string script = "John 6:36 !For I came down from heaven, not to do mine own will, but the will of him that sent me.";
+    private static string script = "John 6:36 !For I came down from heaven, not to do mine own will, but the will of him that sent me.";
 
     public void Import()
     {

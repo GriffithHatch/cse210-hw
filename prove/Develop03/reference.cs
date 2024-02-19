@@ -8,10 +8,10 @@ class Reference{
     public void Spliter()
     {
         var instant1 = new Scripture();
-        var instant2 = new Word();
+        var instant2 = new Word("guh");
         var stuff = instant1.Exportscript();
-        this.refrences = stuff[0];
-        this.script = stuff[1];
+        refrences = stuff[0];
+        script = stuff[1];
         instant2.Wordify(script);
     }
 
@@ -22,10 +22,9 @@ class Reference{
 
     public void Printnewscript()
     {
-        var instant = new Word();
-        List<string> newlist = instant.Exportwords();
-        var stuff = string.Join("-",newlist);
-        Console.WriteLine($"{refrences} {stuff}");
+        var instant = new Word("guh");
+        string newlist = instant.Exportwords();
+        Console.WriteLine($"{refrences} {newlist}");
     }
 
 
