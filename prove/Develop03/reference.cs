@@ -2,12 +2,13 @@ using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 
 class Reference{
-    private string script ="";
-     string refrences = "";
+    private string script;
+    private string refrences;
 
     public void Spliter()
     {
-        var instant1 = new Scripture();
+        var instant1 = new Scripture(); // I don't know how to get around those CS103 errors without this.
+        // its messy and gross but I just don't know.
         var instant2 = new Word("guh");
         var stuff = instant1.Exportscript();
         refrences = stuff[0];
