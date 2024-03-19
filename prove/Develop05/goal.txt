@@ -1,4 +1,4 @@
 S:Finish this|I want to go to bed|50||True
-E:Naptime|Go to bed|60||1
+E:Naptime|Go to bed|60||4
 C:Finish work|Don't get behind again|40||3|0|600
-0|0
+3|180

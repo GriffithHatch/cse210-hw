@@ -10,7 +10,7 @@ using System.Xml.Schema;
 
 
 class Goal{
-    protected int totalcompletions;
+    protected static int totalcompletions;
     public static readonly string DELIMITER = "|";
     // private static int count;
     protected int points;
@@ -40,6 +40,10 @@ class Goal{
 
     public int GetPoints(){
         return totalPoints;
+    }
+
+    public int GetCompletions(){
+        return totalcompletions;
     }
 
     public virtual string Export(){

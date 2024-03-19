@@ -35,6 +35,7 @@ class Program
                 break;
                 case 2:
                     Console.WriteLine($"Your current point total is: {guh.GetPoints()}");
+                    Console.WriteLine($"You have completed {guh.GetCompletions()} goals");
                     foreach(Goal line in goals){
                         line.Display();
                     }
