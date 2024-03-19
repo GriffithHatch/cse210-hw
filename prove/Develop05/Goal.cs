@@ -9,14 +9,15 @@ using System.Xml.Schema;
 
 
 
-abstract class Goal{
+class Goal{
+    protected int totalcompletions;
     public static readonly string DELIMITER = "|";
     // private static int count;
     protected int points;
-    // protected int totalPoints;
+    protected static int totalPoints;
     protected string goalname;
     protected string description;
-    public static List<Goal> goals = new List<Goal>();
+    // public static List<Goal> goals = new List<Goal>();
     public Goal (){
         Console.WriteLine("What is the name of your goal?");
         goalname = Console.ReadLine();
@@ -26,6 +27,21 @@ abstract class Goal{
         points = int.Parse(Console.ReadLine());
 
     }
+    public Goal(int guh){
+
+    }
+
+    public Goal(string values){
+        var goalvariables = values.Split(DELIMITER);
+        goalname = goalvariables[0];
+        description = goalvariables[1];
+        points = int.Parse(goalvariables[2]);
+    }
+
+    public int GetPoints(){
+        return totalPoints;
+    }
+
     public virtual string Export(){
         return $"{goalname}{DELIMITER}{description}{DELIMITER}{points}";
     }
@@ -55,6 +71,7 @@ abstract class Goal{
             }
             data += typestring + goal.Export() + "\n";
         }
+        data += totalcompletions + DELIMITER + totalPoints;
         WriteFile(filename, data);
     }
 
@@ -64,7 +81,7 @@ abstract class Goal{
         return lines;
     }
 
-    public void Load(string filename){
+    public void Load(string filename, List<Goal> goals){
         var strings = ReadFile(filename);
 
         foreach (var line in strings){
@@ -78,10 +95,17 @@ abstract class Goal{
             else if (typestring == "C:"){
                 goals.Add(new Checklist(line[2..]));
             }
+            else{
+                var totalvalues = line.Split(DELIMITER);
+                totalcompletions = int.Parse(totalvalues[0]);
+                totalPoints = int.Parse(totalvalues[1]);
+            }
         }
 
     }
-    public abstract void Display();//{
+    public virtual void Display(){
+
+    }//{
         // foreach(Goal line in goals){
             // Console.WriteLine($"{line.goalname} | {line.description} | {line.points} points");
         // }
@@ -93,6 +117,8 @@ abstract class Goal{
     //         Console.WriteLine($"{count}. {line.goalname} | {line.description} | {line.points}");
     // }
     // }
-    public abstract void RecordGoal(int choice);
+    public virtual void RecordGoal(){
+
+    }
 
 }

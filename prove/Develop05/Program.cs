@@ -8,7 +8,9 @@ class Program
 {
     static void Main(string[] args)
     {
+        Goal guh = new(1);
         int end = 0;
+        List<Goal> goals = new List<Goal>();
         while(end != 1){
             Console.WriteLine("What would you like to do today?\n 1. Create Goal\n 2. List All Goals\n 3. Save Goals\n 4. Load Goals\n 5. Record Goals\n 6. Quit Goal Program");
             int menu = int.Parse(Console.ReadLine());
@@ -19,40 +21,48 @@ class Program
                 switch(menu2){
                     case 1:
                     Simple goal = new();
-                    Goal.goals.Add(goal);
+                    goals.Add(goal);
                     break;
                     case 2:
                     Eternal goal2 = new();
-                    Goal.goals.Add(goal2);
+                    goals.Add(goal2);
                     break;
                     case 3:
                     Checklist goal3 = new();
-                    Goal.goals.Add(goal3);
+                    goals.Add(goal3);
                     break;
                 }
                 break;
                 case 2:
-                    foreach(Goal line in Goal.goals){
+                    Console.WriteLine($"Your current point total is: {guh.GetPoints()}");
+                    foreach(Goal line in goals){
                         line.Display();
                     }
                 break;
                 case 3:
+                string filename;
+                Console.WriteLine("What filename would you like to save your goals to?");
+                filename = Console.ReadLine();
+                guh.Save(filename, goals);
                 break;
                 case 4:
+                Console.WriteLine("What file would you like to load?");
+                filename = Console.ReadLine();
+                guh.Load(filename, goals);
                 break;
                 case 5:
 
                 Console.Clear();
                 int count = 0;
-                foreach(Goal line in Goal.goals){
+                foreach(Goal line in goals){
                     count += 1;
                     Console.Write($"{count}. "); line.Display();
                 }
 
                 Console.WriteLine("Choose a goal to record");
                 int choice = int.Parse(Console.ReadLine());
-                var inst = Goal.goals[choice - 1];
-                inst.RecordGoal(choice);
+                var inst = goals[choice - 1];
+                inst.RecordGoal(); //inst already knows all the info for the entry. You do not need to add anything.
 
                 break;
 
@@ -66,12 +76,6 @@ class Program
             }
 
     }
-    
-}
-public static void Save(){
-
-}
-public static void Load(){
     
 }
 }

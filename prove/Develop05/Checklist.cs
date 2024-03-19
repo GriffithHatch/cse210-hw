@@ -10,15 +10,30 @@ class Checklist : Goal{
         completed = 0;
 
     }
+public Checklist(string values) :base(values.Split($"{DELIMITER}{DELIMITER}")[0]){
+        var checkVariable = values.Split($"{DELIMITER}{DELIMITER}")[1].Split(DELIMITER);
+        todo = int.Parse(checkVariable[0]);
+        completed = int.Parse(checkVariable[1]);
+        bonus = int.Parse(checkVariable[2]);
+    }
 
     public override string Export()
     {
-        return base.Export() + $"{DELIMITER}{todo}{DELIMITER}{completed}{DELIMITER}{bonus}";
+        return base.Export() + $"{DELIMITER}{DELIMITER}{todo}{DELIMITER}{completed}{DELIMITER}{bonus}";
     }
 
-    public override void RecordGoal(int choice)
+    public override void RecordGoal()
     {
-
+        todo += 1;
+        totalcompletions += 1;
+        if (todo == completed){
+            totalPoints += points;
+            totalPoints += bonus;
+        }
+        else{
+            totalPoints += points;
+        }
+    
     }
     public override void Display()
     {

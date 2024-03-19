@@ -5,12 +5,16 @@ class Simple : Goal{
     public Simple() : base(){
         done = false;
     }
+    public Simple(string values) :base(values.Split($"{DELIMITER}{DELIMITER}")[0]){
+        var simpleVariable = values.Split($"{DELIMITER}{DELIMITER}")[1];
+        done = bool.Parse(simpleVariable);
+    }
 
-    public override void RecordGoal(int choice)
+    public override void RecordGoal()
     {
-        var goal = goals[choice];
-        
-        
+        done = true;
+        totalcompletions += 1;
+        totalPoints += points;
     }
     public override void Display()
     {
@@ -25,7 +29,7 @@ class Simple : Goal{
     }
     public override string Export()
     {
-        return base.Export() + $"{DELIMITER}{done}";
+        return base.Export() + $"{DELIMITER}{DELIMITER}{done}";
     }
 
     // public override void DisplayList()
