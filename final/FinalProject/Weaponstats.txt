@@ -1,0 +1,9 @@
+W:Longsword|11|1
+W:Duel Daggers|5|4
+W:Shortsword|7|3
+W:RustySword|5|1
+W:Rust Daggers|3|3
+W:Broken Longsword|7|-1
+W:Long Bow|10|1
+S:SuperSword|20|4||-7
+S:Lighting|8|8||-10

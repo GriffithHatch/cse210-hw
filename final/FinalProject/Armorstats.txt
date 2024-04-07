@@ -1,0 +1,4 @@
+A:Leather Armor|3|2
+A:Chainmail|8|0
+A:Scaled Plate|15|-3
+S:Super Plate|25|-5||15

@@ -1,0 +1,4 @@
+M:Goblin|20|2|10|6
+M:Skeleton|30|3|5|9
+B:Goblin Lord|50|5|14|14||1|2
+B:Skeleton Knight|70|3|25|20||0|1
