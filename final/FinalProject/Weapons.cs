@@ -14,9 +14,6 @@ class Weapon{
     public Weapon(){
 
     }
-    public string GetName(){
-        return name;
-    }
     public int GetAttack(){
         return attack;
     }
@@ -25,15 +22,6 @@ class Weapon{
     }
     public virtual int GetMaxhp(){
         return 0;
-    }
-
-    public static Weapon GetWeapon(List<Weapon> weapons,string name){
-        foreach (Weapon weapon in weapons){
-            if (weapon.name == name){
-                return weapon;
-            }
-        }
-        return null;
     }
 
     public static List<Weapon> GetWeaponsLootTable(List<Weapon> weapons){

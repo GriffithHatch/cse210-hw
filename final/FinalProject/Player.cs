@@ -30,21 +30,6 @@ class Player{
         inventory.Add(consumable);
         dead = false;
     }
-    public Player (List<Armor> armor, List<Weapon> weapon, string consumable){
-        Console.WriteLine("What is your name?");
-        name = Console.ReadLine();
-        maxhp = 65;
-        defence = 0;
-        health = 65;
-        speed = 5;
-        truespeed = speed;
-        sanity = 100;
-        attack = 5;
-        
-        
-        inventory.Add(consumable);
-        dead = false;
-    }
 
     public void EquipStats(){
         truespeed = speed + weapon.GetSpeed() + armor.GetSpeed();
