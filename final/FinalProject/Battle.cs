@@ -1,7 +1,7 @@
 using System.ComponentModel.Design;
 
 class Battle{
-    public void BeginCombat(Player player, Monsters monster){
+    public bool BeginCombat(Player player, Monsters monster){
         var playerinfo = player.GetPlayerInformation();
         var playersplit = playerinfo.Split("|");
         string pname = playersplit[0];
@@ -59,7 +59,6 @@ class Battle{
         while(phealth > 0 && mhealth > 0 && ran == false){
         int attackcount = 1;
         int menu;
-        phealth -= dot;
         mhealth += regen;
         Console.WriteLine($"You have {phealth} health");
         Console.WriteLine($"{mname} has {mhealth} health");
@@ -68,9 +67,11 @@ class Battle{
             ptempdefence = pdefence; // this way players don't get a permanent buff to their defence.
 
             while(attackcount <= playerattacks){
+                try{
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("1. Attack\n 2.Defend\n 3. Run Away");
                 menu = int.Parse(Console.ReadLine());
+
                 switch(menu){
                     case 1:
                     mhealth = PlayerAttack(pname,pattack,mtempdefence,mhealth);
@@ -84,7 +85,10 @@ class Battle{
                     default:
                     Console.WriteLine("Due to your lacking of choosing a proper answer, You lose a turn!");
                     break;
+
                 }
+                }
+                catch(Exception e){}
                 attackcount += 1;
             }
             if(mhealth <= 0){
@@ -130,6 +134,7 @@ class Battle{
 
             attackcount = 1;
             while(attackcount <= playerattacks){
+                try{
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("1. Attack\n 2.Defend\n 3. Run Away");
                 menu = int.Parse(Console.ReadLine());
@@ -147,12 +152,17 @@ class Battle{
                     Console.WriteLine("Due to your lacking of choosing a proper answer, You lose a turn!");
                     break;
                 }
+                }
+                catch(Exception e){}
                 attackcount += 1;
             }
 
         }
+        phealth -= dot;
     }
+    Console.Clear();
     player.ReturnHp(phealth);
+    return ran;
     }
 
 

@@ -3,6 +3,7 @@ S:Calm sounds of a small stream fill the air||10
 L:A fallen mercenary with some usable armor||armor|Torch
 L:Another fallen mercenary||weapon|Health Potion
 L:A fallen Knight with a good weapon||weapon|Speed Potion
-M:Die||weapon
+M:Die||armor
+M:Lol good luck||weapon
 M:Win if you can||armor
 S:A small light appears and your wounds seem to close||7

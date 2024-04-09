@@ -18,9 +18,9 @@ class Player{
     public Player(Armor armor, Weapon weapon,string consumable){
         Console.WriteLine("What is your name?");
         name = Console.ReadLine();
-        maxhp = 50;
+        maxhp = 65;
         defence = 0;
-        health = 50;
+        health = 65;
         speed = 5;
         truespeed = speed;
         sanity = 100;
@@ -33,9 +33,9 @@ class Player{
     public Player (List<Armor> armor, List<Weapon> weapon, string consumable){
         Console.WriteLine("What is your name?");
         name = Console.ReadLine();
-        maxhp = 50;
+        maxhp = 65;
         defence = 0;
-        health = 50;
+        health = 65;
         speed = 5;
         truespeed = speed;
         sanity = 100;
@@ -90,6 +90,9 @@ class Player{
             health = maxhp;
         }
     }
+    public void StressHeal(int heal){
+        sanity += heal;
+    }
     public void AddInventory(string item){
         inventory.Add(item);
     }
@@ -109,12 +112,12 @@ class Player{
             Console.WriteLine("You feel a dull pain in the back of your head");
         }
         if(sanity < 40 && sanity >= 15){
-            health -= 10;
+            health -= 5;
             Console.WriteLine("You head is under great stress. You feel yourself getting weaker");
         }
         if(sanity < 15 && sanity >= 5){
             Console.WriteLine("The walls are caving in you are about to break");
-            health -= 20;
+            health -= 10;
         }
         if(sanity < 5){
             Console.WriteLine("Due to stress you have suffered a heart attack and have died");
@@ -167,7 +170,7 @@ class Player{
             int choice2 = int.Parse(Console.ReadLine()) - 1;
 
             if (inventory[choice2] == "Health Potion"){
-                health += 10;
+                health += 40;
                 if (health > maxhp){
                     health = maxhp;
                 }
@@ -181,7 +184,7 @@ class Player{
             }
 
             if (inventory[choice2] == "Torch"){
-                sanity += 40;
+                sanity += 60;
                 inventory.Remove(inventory[choice2]);
             }
 

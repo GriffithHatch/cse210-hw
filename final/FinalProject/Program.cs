@@ -33,6 +33,7 @@ class Program
         while(valid == false){
             Console.WriteLine("How would you like your mercenary to start? There are 3 options");
             Console.WriteLine("1. Leather Armor, Duel Daggers, Speed Potion\n2. Chainmail, Shortsword, Health Potion\n3. Scaled Plate, Longsword, Torch");
+            try{
             mercstart = int.Parse(Console.ReadLine());
             if (mercstart == 1){
                 mercenarystuff = "Leather Armor,Duel Daggers,Speed potion";
@@ -65,6 +66,8 @@ class Program
             else{
                 Console.WriteLine("Please choose one of the 3 options listed");
             }
+            }
+            catch(Exception e){}
         }
 
 
@@ -88,8 +91,12 @@ class Program
         if (mercenary.CheckDead() == true){
             break;
         }
-        Console.WriteLine("1. Enter Room\n 2. Check Inventory\n 3. Check Stats\n 4. Treat Wounds\n 5. Give up");
+        try{
+        Console.WriteLine("1. Enter Room\n2. Check Inventory\n3. Check Stats\n4. Treat Wounds\n5. Give up");
         menu = int.Parse(Console.ReadLine());
+        }
+        catch(Exception e){}
+        
         switch(menu){
             case 1:
             instD.GenerateRoom(mercenary,armors,weapons,monsters);
@@ -106,7 +113,7 @@ class Program
             if(healed >= 1){
                 Console.WriteLine("You cannot heal again at this time");
             }
-            else{mercenary.Heal(5);
+            else{mercenary.Heal(15);
             healed += 1;
             }
 
@@ -126,6 +133,10 @@ class Program
     }
     if (mercenary.CheckDead() == true){
         Console.WriteLine("You have died, its sad but expected. This land is unfair and luck is the deciding factor for everything");
+    }
+    else{
+        Console.WriteLine("How did you even survive this rng fest.");
+        Console.WriteLine("Good job I guess you made it to the end. Good luck getting back");
     }
     }
 }

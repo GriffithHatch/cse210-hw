@@ -19,23 +19,27 @@ class Dungeon{
     }
     public void GenerateRoom(Player mercenary, List<Armor> armor, List<Weapon> weapon, List<Monsters> monsters){
         Random randomize = new();
-        var roomsgenerated = randomize.Next(1,3);
+        var roomsgenerated = randomize.Next(1,4);
+        Console.WriteLine($"{roomsgenerated} rooms");
         switch(roomsgenerated){
             case 1:
             var endroomindex = monsterrooms.Count() - 1;
             var randomroom = randomize.Next(0,endroomindex);
+            Console.WriteLine(monsterrooms[randomroom].description);
             monsterrooms[randomroom].RoomLoot(armor,weapon,monsters);
             monsterrooms[randomroom].RoomEffect(mercenary);
             break;
             case 2:
             var endroomindex1 = saferooms.Count() - 1;
             var randomroom1 = randomize.Next(0,endroomindex1);
+            Console.WriteLine(saferooms[randomroom1].description);
             saferooms[randomroom1].RoomEffect(mercenary);
             
             break;
             case 3:
             var endroomindex2 = lootrooms.Count() - 1;
             var randomroom2 = randomize.Next(0,endroomindex2);
+            Console.WriteLine(lootrooms[randomroom2].description);
             lootrooms[randomroom2].RoomLoot(armor,weapon);
             lootrooms[randomroom2].RoomEffect(mercenary);
             
@@ -70,6 +74,7 @@ class Dungeon{
 class Monsterroom : Dungeon{
 
     private string loottable;
+    private bool ranaway = false;
     private Armor armor = null;
     private Weapon weapon = null;
     private Monsters monster;
@@ -100,9 +105,12 @@ class Monsterroom : Dungeon{
     public override void RoomEffect(Player mercenary)
     {
         Battle instB = new();
-        instB.BeginCombat(mercenary,monster);
+        ranaway = instB.BeginCombat(mercenary,monster);
         mercenary.CheckHealth();
         if(mercenary.CheckDead()){
+
+        }
+        else if(ranaway == true){
 
         }
         else{
@@ -115,7 +123,6 @@ class Monsterroom : Dungeon{
                 if (choice == "Y"){
                     mercenary.ReplaceArmor(armor);
                 }
-                armor = null;
             }
             else if(weapon != null){
                 Console.WriteLine("You have won this combat and a Weapon is left behind");
@@ -126,10 +133,12 @@ class Monsterroom : Dungeon{
                 if (choice == "Y"){
                     mercenary.ReplaceWeapon(weapon);
                 }
-                weapon = null;
 
             }
+
         }
+        weapon = null;
+        armor = null;
     }
 
 }
@@ -141,6 +150,7 @@ class Saferoom : Dungeon{
     public override void RoomEffect(Player mercenary){
         Console.WriteLine($"You woulds seem to close! You heal {heal} hp");
         mercenary.Heal(heal);
+        mercenary.StressHeal(heal);
 
     }
 
